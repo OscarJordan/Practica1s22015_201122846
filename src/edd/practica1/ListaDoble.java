@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class ListaDoble {
     
-    NodoObjeto cabeza;
+    public static NodoObjeto cabeza;
     
     public ListaDoble()
     {
