@@ -21,6 +21,9 @@ public class Agregar extends javax.swing.JFrame {
 
     
     String path = "";
+    String nombre;
+    String tipo;
+    ListaDoble lista = new ListaDoble();
     /**
      * Creates new form Agregar
      */
@@ -37,6 +40,7 @@ public class Agregar extends javax.swing.JFrame {
     
     public Agregar() {
         initComponents();
+        
     }
 
     /**
@@ -58,7 +62,7 @@ public class Agregar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         Txt_Nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        Combo = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         Imagen = new javax.swing.JLabel();
         Btn_Browse = new javax.swing.JButton();
@@ -123,7 +127,7 @@ public class Agregar extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suelo", "Pared", "Goomba", "Koopa", "Ficha", "Hongo" }));
+        Combo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suelo", "Pared", "Goomba", "Koopa", "Ficha", "Hongo" }));
 
         jLabel6.setText("Imágen:");
 
@@ -139,6 +143,11 @@ public class Agregar extends javax.swing.JFrame {
         });
 
         Btn_Agregar.setText("Agregar");
+        Btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_AgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,7 +168,7 @@ public class Agregar extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(Txt_Nombre)
-                                .addComponent(jComboBox1, 0, 182, Short.MAX_VALUE))
+                                .addComponent(Combo, 0, 182, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Btn_Agregar)
@@ -180,7 +189,7 @@ public class Agregar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,11 +234,21 @@ public class Agregar extends javax.swing.JFrame {
     private void Btn_MarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_MarioActionPerformed
         // TODO add your handling code here:
         Btn_Mario.setEnabled(false);
+        nombre = "Mario";
+        tipo = "Principal";
+        path = "path de mario";
+        
+        lista.IngresarNuevo(nombre, path, tipo);
     }//GEN-LAST:event_Btn_MarioActionPerformed
 
     private void Btn_CastleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CastleActionPerformed
         // TODO add your handling code here:
         Btn_Castle.setEnabled(false);
+        nombre = "Castillo";
+        tipo = "Castle";
+        path = "path de castillo";
+        
+        lista.IngresarNuevo(nombre, path, tipo);
     }//GEN-LAST:event_Btn_CastleActionPerformed
 
     private void Btn_BrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BrowseActionPerformed
@@ -246,6 +265,17 @@ public class Agregar extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Proceso cancelado!");
         }
     }//GEN-LAST:event_Btn_BrowseActionPerformed
+
+    private void Btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_AgregarActionPerformed
+        // TODO add your handling code here:
+        nombre = Txt_Nombre.getText();
+        tipo = Combo.getSelectedItem().toString();
+        
+        lista.IngresarNuevo(nombre, path, tipo);
+        
+        
+        
+    }//GEN-LAST:event_Btn_AgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,9 +317,9 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JButton Btn_Browse;
     private javax.swing.JButton Btn_Castle;
     private javax.swing.JButton Btn_Mario;
+    private javax.swing.JComboBox Combo;
     private javax.swing.JLabel Imagen;
     private javax.swing.JTextField Txt_Nombre;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
