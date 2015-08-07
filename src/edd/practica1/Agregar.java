@@ -343,9 +343,10 @@ public class Agregar extends javax.swing.JFrame {
         Btn_Mario.setEnabled(false);
         nombre = "Mario";
         tipo = "Principal";
-        path = "path de mario";
+        path = "C:\\Users\\Public\\Documents\\img\\mario.jpg";
         
         lista.IngresarNuevo(nombre, path, tipo);
+        JOptionPane.showMessageDialog(null, "Personaje principal agregado!");
     }//GEN-LAST:event_Btn_MarioActionPerformed
 
     private void Btn_CastleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_CastleActionPerformed
@@ -353,14 +354,15 @@ public class Agregar extends javax.swing.JFrame {
         Btn_Castle.setEnabled(false);
         nombre = "Castillo";
         tipo = "Castle";
-        path = "path de castillo";
+        path = "C:\\Users\\Public\\Documents\\img\\castillo.jpg";
         
         lista.IngresarNuevo(nombre, path, tipo);
+        JOptionPane.showMessageDialog(null, "Objeto castillo agregado!");
     }//GEN-LAST:event_Btn_CastleActionPerformed
 
     private void Btn_BrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BrowseActionPerformed
         // TODO add your handling code here:
-        JFileChooser selec = new JFileChooser();
+        JFileChooser selec = new JFileChooser("C:\\Users\\Public\\Documents\\img");
         int dec = selec.showOpenDialog(null);
         if (dec == JFileChooser.APPROVE_OPTION) {
         File file = selec.getSelectedFile();
@@ -380,7 +382,10 @@ public class Agregar extends javax.swing.JFrame {
         
         lista.IngresarNuevo(nombre, path, tipo);
         
-        JOptionPane.showMessageDialog(null, "Cabeza nombre: " + lista.cabeza.nombre + "Ant: " + lista.cabeza.ant + "Sig: "+ lista.cabeza.sig.nombre);
+        Txt_Nombre.setText("");
+        Imagen.setIcon(null);
+        JOptionPane.showMessageDialog(null, "Objeto Agregado!");
+        //JOptionPane.showMessageDialog(null, "Cabeza nombre: " + lista.cabeza.nombre + "Ant: " + lista.cabeza.ant + "Sig: "+ lista.cabeza.sig.nombre);
         
     }//GEN-LAST:event_Btn_AgregarActionPerformed
 
@@ -398,11 +403,11 @@ public class Agregar extends javax.swing.JFrame {
         // TODO add your handling code here:
         NodoObjeto aux;
         aux = lista.cabeza;
-        JOptionPane.showMessageDialog(null, aux.nombre);
-        JOptionPane.showMessageDialog(null, "Cabeza sig: " + lista.cabeza.sig);
+        /*JOptionPane.showMessageDialog(null, aux.nombre);
+        JOptionPane.showMessageDialog(null, "Cabeza sig: " + lista.cabeza.sig);*/
         while(aux.sig != null)
         {
-        JOptionPane.showMessageDialog(null, "Nombre: " + aux.nombre);
+        //JOptionPane.showMessageDialog(null, "Nombre: " + aux.nombre);
         aux = aux.sig;
         }
         Catalogo ventanaCatalogo=new Catalogo(lista);

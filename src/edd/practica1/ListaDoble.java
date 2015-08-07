@@ -56,15 +56,15 @@ public class ListaDoble {
      nuevo.ant = fin;
      fin.sig = nuevo;
      fin = nuevo;
-     JOptionPane.showMessageDialog(null, "Cabeza sig: " + cabeza.sig.nombre);
-     JOptionPane.showMessageDialog(null, "Ant fin: " + fin.ant.nombre);
+     //JOptionPane.showMessageDialog(null, "Cabeza sig: " + cabeza.sig.nombre);
+     //JOptionPane.showMessageDialog(null, "Ant fin: " + fin.ant.nombre);
      }
      
      fin.sig = null;
-     JOptionPane.showMessageDialog(null, "Fin: " + fin.nombre);
-     JOptionPane.showMessageDialog(null, "Cabeza: " + cabeza.nombre);
+     //JOptionPane.showMessageDialog(null, "Fin: " + fin.nombre);
+     //JOptionPane.showMessageDialog(null, "Cabeza: " + cabeza.nombre);
      
-     JOptionPane.showMessageDialog(null, "Sig fin: " + fin.sig);
+     //JOptionPane.showMessageDialog(null, "Sig fin: " + fin.sig);
         
     }
 }
