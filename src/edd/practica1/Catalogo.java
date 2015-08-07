@@ -7,6 +7,8 @@
 package edd.practica1;
 
 import javax.swing.JOptionPane;
+import edd.practica1.ListaDoble;
+import edd.practica1.NodoObjeto;
 
 /**
  *
@@ -17,10 +19,40 @@ public class Catalogo extends javax.swing.JFrame {
     /**
      * Creates new form Catalogo
      */
-    public Catalogo() {
+    ListaDoble listita;
+    public Catalogo()
+    {
         initComponents();
+        MostrarObjetos();
+        listita=new ListaDoble();
+    }
+    
+    public Catalogo(ListaDoble listaTmp)
+    {
+        initComponents();
+        listita=listaTmp;
+        MostrarObjetos();
     }
 
+    public void MostrarObjetos()
+    {
+        
+    NodoObjeto aux;
+    aux = listita.cabeza;
+    //JOptionPane.showMessageDialog(null, "El sig del auxiliar es: " + aux.sig);
+    
+    //ComboObjetos.addItem(aux.nombre);
+    //aux = aux.sig;
+    
+    while(aux.sig != null)
+    {
+    ComboObjetos.addItem(aux.nombre);
+    JOptionPane.showMessageDialog(null, "Objeto agregado: " + aux.nombre);
+    aux = aux.sig;
+    }
+    ComboObjetos.addItem(aux.nombre);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,7 +67,6 @@ public class Catalogo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ComboObjetos = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -48,13 +79,6 @@ public class Catalogo extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Calibri", 0, 10)); // NOI18N
         jButton1.setText("Seleccionar");
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,11 +94,7 @@ public class Catalogo extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 319, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(126, 126, 126))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,9 +105,7 @@ public class Catalogo extends javax.swing.JFrame {
                 .addComponent(ComboObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addGap(49, 49, 49)
-                .addComponent(jButton2)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,14 +113,13 @@ public class Catalogo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(155, 155, 155)
+                .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,11 +133,6 @@ public class Catalogo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +160,7 @@ public class Catalogo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Catalogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+           
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -158,9 +170,8 @@ public class Catalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox ComboObjetos;
+    public static javax.swing.JComboBox ComboObjetos;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

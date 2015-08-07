@@ -11,6 +11,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import edd.practica1.ListaDoble;
+import edd.practica1.NodoObjeto;
 
 /**
  *
@@ -23,7 +25,7 @@ public class Agregar extends javax.swing.JFrame {
     String path = "";
     String nombre;
     String tipo;
-    public static ListaDoble lista = new ListaDoble();
+    public ListaDoble lista=new ListaDoble();
     /**
      * Creates new form Agregar
      */
@@ -42,7 +44,6 @@ public class Agregar extends javax.swing.JFrame {
         initComponents();
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -379,7 +380,7 @@ public class Agregar extends javax.swing.JFrame {
         
         lista.IngresarNuevo(nombre, path, tipo);
         
-        
+        JOptionPane.showMessageDialog(null, "Cabeza nombre: " + lista.cabeza.nombre + "Ant: " + lista.cabeza.ant + "Sig: "+ lista.cabeza.sig.nombre);
         
     }//GEN-LAST:event_Btn_AgregarActionPerformed
 
@@ -395,9 +396,18 @@ public class Agregar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Catalogo nuevo = new Catalogo();
-        nuevo.setLocationRelativeTo(null);
-        nuevo.setVisible(true);
+        NodoObjeto aux;
+        aux = lista.cabeza;
+        JOptionPane.showMessageDialog(null, aux.nombre);
+        JOptionPane.showMessageDialog(null, "Cabeza sig: " + lista.cabeza.sig);
+        while(aux.sig != null)
+        {
+        JOptionPane.showMessageDialog(null, "Nombre: " + aux.nombre);
+        aux = aux.sig;
+        }
+        Catalogo ventanaCatalogo=new Catalogo(lista);
+        ventanaCatalogo.setLocationRelativeTo(null);
+        ventanaCatalogo.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

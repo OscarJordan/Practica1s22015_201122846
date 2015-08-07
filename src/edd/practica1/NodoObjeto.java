@@ -16,8 +16,8 @@ public class NodoObjeto {
     String imagen;
     String tipo;
     
-    NodoObjeto sig;
-    NodoObjeto ant;
+    public NodoObjeto sig;
+    public NodoObjeto ant;
     
     public NodoObjeto(String nom, String img, String type)
     {

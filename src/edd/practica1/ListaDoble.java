@@ -7,6 +7,8 @@
 package edd.practica1;
 
 import javax.swing.JOptionPane;
+import edd.practica1.NodoObjeto;
+
 
 /**
  *
@@ -14,11 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class ListaDoble {
     
-    public static NodoObjeto cabeza;
+    public NodoObjeto cabeza;
+    public NodoObjeto fin;
     
     public ListaDoble()
     {
     cabeza = null;
+    fin = null;
     }
            
     public boolean ListaVacia()
@@ -33,27 +37,34 @@ public class ListaDoble {
     
     public void IngresarNuevo(String nombre, String imagen, String tipo)
     {
-    NodoObjeto nuevo = new NodoObjeto(nombre, imagen, tipo);
-    if(ListaVacia())
-    {
-    cabeza = nuevo;
-    JOptionPane.showMessageDialog(null, "Ingresando cabeza!");
-    JOptionPane.showMessageDialog(null, cabeza.imagen + ", " + cabeza.nombre + ", " + cabeza.tipo);
-    }
-    else
-    {
-    NodoObjeto aux;
-    aux = cabeza;
-    while(aux.sig != null)
-    {
-    aux = aux.sig;
-    }
-    nuevo.ant = aux.sig;
-    nuevo.sig = null;
-    JOptionPane.showMessageDialog(null, "Ingresando nodo!");
-    JOptionPane.showMessageDialog(null, nuevo.imagen + ", " + nuevo.nombre + ", " + nuevo.tipo);
-    }    
-       
+     NodoObjeto nuevo = new NodoObjeto(nombre, imagen, tipo);
+    
+     if(ListaVacia())
+     {
+     cabeza = nuevo;
+     fin = nuevo;
+     //JOptionPane.showMessageDialog(null, "Cabeza: " + ListaDoble.cabeza.nombre);
+     }
+     else if(cabeza.sig==null)
+     {
+     fin = nuevo;
+     cabeza.sig = fin;
+     fin.ant = cabeza;
+     }
+     else
+     {
+     nuevo.ant = fin;
+     fin.sig = nuevo;
+     fin = nuevo;
+     JOptionPane.showMessageDialog(null, "Cabeza sig: " + cabeza.sig.nombre);
+     JOptionPane.showMessageDialog(null, "Ant fin: " + fin.ant.nombre);
+     }
+     
+     fin.sig = null;
+     JOptionPane.showMessageDialog(null, "Fin: " + fin.nombre);
+     JOptionPane.showMessageDialog(null, "Cabeza: " + cabeza.nombre);
+     
+     JOptionPane.showMessageDialog(null, "Sig fin: " + fin.sig);
         
     }
 }
