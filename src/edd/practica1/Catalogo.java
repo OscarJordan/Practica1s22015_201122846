@@ -140,6 +140,11 @@ public class Catalogo extends javax.swing.JFrame {
         });
 
         jButton2.setText("Modificar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -275,6 +280,20 @@ public class Catalogo extends javax.swing.JFrame {
         ComboObjetos.removeAllItems();
         MostrarObjetos();
     }//GEN-LAST:event_Btn_EliminarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+            NodoObjeto temp;
+            temp = listita.cabeza;
+            for(int i = 0; i<= pos-1; i++)
+            {
+            temp = temp.sig;
+            }
+            temp.nombre = Txt_Ob_Nombre.getText();
+            JOptionPane.showMessageDialog(null, "Objeto modificado!");
+            ComboObjetos.removeAllItems();
+            MostrarObjetos();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
