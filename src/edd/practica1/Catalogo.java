@@ -75,6 +75,8 @@ public class Catalogo extends javax.swing.JFrame {
         Txt_Ob_Nombre = new javax.swing.JTextField();
         Txt_Ob_Tipo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        Btn_Eliminar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -130,6 +132,15 @@ public class Catalogo extends javax.swing.JFrame {
 
         jLabel3.setText("Detalles:");
 
+        Btn_Eliminar.setText("Eliminar");
+        Btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_EliminarActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Modificar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -151,6 +162,12 @@ public class Catalogo extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,7 +183,11 @@ public class Catalogo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Btn_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,6 +235,47 @@ public class Catalogo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void Btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_EliminarActionPerformed
+        // TODO add your handling code here:
+        pos = ComboObjetos.getSelectedIndex();
+        
+        if(listita.ListaVacia())
+        {
+        JOptionPane.showMessageDialog(null, "No hay elementos que eliminar!");
+        }
+        else if(pos == 0)
+        {
+        NodoObjeto temp;
+        temp = listita.cabeza.sig;
+        temp.ant = null;
+        listita.cabeza = temp;
+        }
+        else if(pos == ComboObjetos.getItemCount() -1)
+        {
+        NodoObjeto temp;
+        temp = listita.fin.ant;
+        temp.sig = null;
+        listita.fin = temp;
+        }
+        else
+        {
+            NodoObjeto temp;
+            temp = listita.cabeza;
+            for(int i = 0; i<= pos-1; i++)
+            {
+            temp = temp.sig;
+            }
+            temp.ant.sig = temp.sig;
+            temp.sig.ant = temp.ant;
+            temp.ant = null;
+            temp.sig = null;
+            
+        }
+        JOptionPane.showMessageDialog(null, "Objeto eliminado!");
+        ComboObjetos.removeAllItems();
+        MostrarObjetos();
+    }//GEN-LAST:event_Btn_EliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,10 +312,12 @@ public class Catalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Eliminar;
     public static javax.swing.JComboBox ComboObjetos;
     private javax.swing.JTextField Txt_Ob_Nombre;
     private javax.swing.JTextField Txt_Ob_Tipo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
