@@ -13,6 +13,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import edd.practica1.ListaDoble;
 import edd.practica1.NodoObjeto;
+import java.awt.Desktop;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,9 +31,96 @@ public class Agregar extends javax.swing.JFrame {
     String nombre;
     String tipo;
     public ListaDoble lista=new ListaDoble();
+    String cadenalista = "";
     /**
      * Creates new form Agregar
      */
+    
+    public void GraficarNodosLista()
+    {
+    try {
+      
+      String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+      
+      String fileInputPath = "C:\\Salida\\SalidaLista.txt";
+      String fileOutputPath = "C:\\Salida\\ImagenLista.jpg";
+      
+      String tParam = "-Tjpg";
+      String tOParam = "-o";
+        
+      String[] cmd = new String[5];
+      cmd[0] = dotPath;
+      cmd[1] = tParam;
+      cmd[2] = fileInputPath;
+      cmd[3] = tOParam;
+      cmd[4] = fileOutputPath;
+                  
+      Runtime rt = Runtime.getRuntime();
+      
+      rt.exec(cmd);
+      
+      
+    } catch (Exception ex) 
+    {
+      ex.printStackTrace();
+    }
+    finally 
+    {
+        
+    }
+    }
+    
+    
+     public void LlenarTxtLista ()
+    {
+    try
+    {
+    FileWriter salida = null;
+    File archivo = new File("c:\\Salida\\SalidaLista.txt");
+    salida =  new FileWriter(archivo);
+        
+    salida.write("digraph G");
+    salida.write("\r\n");
+    salida.write("{");
+    salida.write("\r\n");
+    
+    NodoObjeto recorrer;
+    recorrer = lista.cabeza;
+    //JOptionPane.showMessageDialog(null, "Ya dentro del método, la cabeza es: " + recorrer.nombre);
+    while(recorrer != null)
+    {
+        if(recorrer == lista.cabeza)
+        {
+        cadenalista = cadenalista  + recorrer.nombre;
+        recorrer = recorrer.sig;
+        //JOptionPane.showMessageDialog(null, cadenalista);
+        }
+        else if(recorrer == lista.fin)
+        {
+        cadenalista = cadenalista + "->" + recorrer.nombre + ";";
+        recorrer = recorrer.sig;
+        //JOptionPane.showMessageDialog(null, cadenalista);
+        }
+        else
+        {
+        cadenalista =  cadenalista + "->" + recorrer.nombre;
+        recorrer = recorrer.sig;
+        //JOptionPane.showMessageDialog(null, cadenalista);
+        }
+    }
+    salida.write(cadenalista);
+    salida.write("\r\n");
+    salida.write("}");
+    salida.close();
+    }
+        catch(IOException e)
+        {
+        
+        
+        }
+}
+    
+    
     
     public void LlenarImagen(String path)
     {
@@ -77,6 +169,9 @@ public class Agregar extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -285,6 +380,21 @@ public class Agregar extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu3.setText("Graficar");
+
+        jMenuItem4.setText("Lista de Objetos");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
+
+        jMenuItem5.setText("Matriz");
+        jMenu3.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu3);
+
         jMenu2.setText("Ayuda");
 
         jMenuItem3.setText("Acerca de");
@@ -332,7 +442,7 @@ public class Agregar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -415,6 +525,29 @@ public class Agregar extends javax.swing.JFrame {
         ventanaCatalogo.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        LlenarTxtLista();
+        GraficarNodosLista();
+        
+        try    
+            {
+            Thread.sleep(1000);
+            } 
+        catch(InterruptedException ex) 
+            {
+            Thread.currentThread().interrupt();
+            }
+        
+        File f = new File("C:\\Salida\\ImagenLista.jpg");
+        Desktop dt = Desktop.getDesktop();
+        try {
+            dt.open(f);
+        } catch (IOException ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -469,10 +602,13 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
