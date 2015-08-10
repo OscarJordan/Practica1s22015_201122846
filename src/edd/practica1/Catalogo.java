@@ -101,6 +101,8 @@ public class Catalogo extends javax.swing.JFrame {
 
         jLabel5.setText("Tipo:");
 
+        Txt_Ob_Tipo.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(

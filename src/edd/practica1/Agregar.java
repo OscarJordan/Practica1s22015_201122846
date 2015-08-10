@@ -73,6 +73,7 @@ public class Agregar extends javax.swing.JFrame {
     
      public void LlenarTxtLista ()
     {
+    cadenalista = "";    
     try
     {
     FileWriter salida = null;
@@ -91,19 +92,19 @@ public class Agregar extends javax.swing.JFrame {
     {
         if(recorrer == lista.cabeza)
         {
-        cadenalista = cadenalista  + recorrer.nombre;
+        cadenalista = cadenalista  + recorrer.nombre + "_" + recorrer.tipo;
         recorrer = recorrer.sig;
         //JOptionPane.showMessageDialog(null, cadenalista);
         }
         else if(recorrer == lista.fin)
         {
-        cadenalista = cadenalista + "->" + recorrer.nombre + ";";
+        cadenalista = cadenalista + "->" + recorrer.nombre + "_" + recorrer.tipo + ";";
         recorrer = recorrer.sig;
         //JOptionPane.showMessageDialog(null, cadenalista);
         }
         else
         {
-        cadenalista =  cadenalista + "->" + recorrer.nombre;
+        cadenalista =  cadenalista + "->" + recorrer.nombre + "_" + recorrer.tipo;
         recorrer = recorrer.sig;
         //JOptionPane.showMessageDialog(null, cadenalista);
         }
@@ -527,6 +528,8 @@ public class Agregar extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+        
+        
         LlenarTxtLista();
         GraficarNodosLista();
         
