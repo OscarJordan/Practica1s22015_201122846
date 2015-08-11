@@ -32,6 +32,7 @@ public class Agregar extends javax.swing.JFrame {
     String tipo;
     public ListaDoble lista=new ListaDoble();
     String cadenalista = "";
+    public static String tiposalida = "";
     /**
      * Creates new form Agregar
      */
@@ -369,6 +370,11 @@ public class Agregar extends javax.swing.JFrame {
         jMenu1.setText("Archivo");
 
         jMenuItem1.setText("Avanzar al Juego");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Salir");
@@ -550,6 +556,15 @@ public class Agregar extends javax.swing.JFrame {
             Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        tiposalida = ComboCola.getSelectedItem().toString();
+        JOptionPane.showMessageDialog(null, "El tipo de salida para la lista es: " + tiposalida);
+        Tablero tab = new Tablero();
+        tab.setLocationRelativeTo(null);
+        tab.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments

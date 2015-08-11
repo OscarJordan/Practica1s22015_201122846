@@ -16,8 +16,8 @@ public class NodoMatriz {
     
     public NodoMatriz arriba;
     public NodoMatriz abajo;
-    public NodoMatriz der;
-    public NodoMatriz izq;
+    public NodoMatriz sig;
+    public NodoMatriz ant;
     
     public NodoMatriz(int x, int y)
     {
@@ -26,8 +26,8 @@ public class NodoMatriz {
     
     arriba = null;
     abajo = null;
-    der = null;
-    izq = null;
+    sig = null;
+    ant = null;
     }
     
 }
