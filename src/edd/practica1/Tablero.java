@@ -8,6 +8,7 @@ package edd.practica1;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,14 +34,15 @@ public class Tablero extends javax.swing.JFrame {
     {
     for(int i = 0; i < 2; i++)
     {
-    NodoMatriz nuevo = new NodoMatriz(fila, columna);
+    NodoMatriz nuevo = new NodoMatriz(fila, columna, 0);
     
     if(lista.MatrizVacia())
     {
     lista.cabeza = nuevo;
     JLabel label = new JLabel();
-    label.setBounds(3 + fila*52, 3, 50, 50);
+    label.setBounds(3 + columna*52, 3, 50, 50);
     label.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
+    PanTablero.add(label);
     fila++;
     columna++;
     }
@@ -48,38 +50,44 @@ public class Tablero extends javax.swing.JFrame {
     {
     lista.cabeza.sig = nuevo;
     JLabel label = new JLabel();
-    label.setBounds(3 + fila*52, 3, 50, 50);
+    label.setBounds(3 + columna*52, 3, 50, 50);
     label.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
+    PanTablero.add(label);
     }
     }
     //fila = 0;
-    for(int x = 0 ; x < 4;x++)
+    for(int x = 0 ; x < 3;x++)
     {
-    NodoMatriz nuevo = new NodoMatriz(fila, columna);
+    NodoMatriz nuevo = new NodoMatriz(fila, columna, 0);
     if(fila == 1)
     {
     lista.cabeza.abajo = nuevo;
     nuevo.arriba = lista.cabeza;
     JLabel label = new JLabel();
-    label.setBounds(3 , 3+ columna*52, 50, 50);
+    label.setBounds(3 , 3+ fila*52, 50, 50);
     label.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
+    PanTablero.add(label);
     fila++;
     }
     else
     {
-    NodoMatriz nuevofila = new NodoMatriz(fila, columna);    
+    NodoMatriz nuevofila = new NodoMatriz(fila, columna, 0);    
     NodoMatriz aux;
     aux = lista.cabeza;
     int h = 0;
-    while(h != fila)
+    while(h != fila-1)
     {
     aux = aux.abajo;
+    //JOptionPane.showMessageDialog(null, aux);
+    h++;
     }
     aux.abajo = nuevofila;
     nuevofila.arriba = aux;
     JLabel label = new JLabel();
-    label.setBounds(3 , 3+ columna*52, 50, 50);
+    label.setBounds(3 , 3+ fila*52, 50, 50);
     label.setBorder(javax.swing.BorderFactory.createLineBorder(Color.black, 1));
+    PanTablero.add(label);
+    fila++;
     }
     }
     

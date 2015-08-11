@@ -12,17 +12,18 @@ package edd.practica1;
  */
 public class NodoMatriz {
     
-    int posx, posy;
+    int posx, posy, dato;
     
     public NodoMatriz arriba;
     public NodoMatriz abajo;
     public NodoMatriz sig;
     public NodoMatriz ant;
     
-    public NodoMatriz(int x, int y)
+    public NodoMatriz(int x, int y, int data)
     {
     posx = x;
     posy = y;
+    dato = data;
     
     arriba = null;
     abajo = null;
